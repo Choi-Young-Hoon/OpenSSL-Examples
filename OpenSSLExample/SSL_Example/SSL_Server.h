@@ -22,7 +22,7 @@ typedef int SOCKET;
 #include "openssl/err.h"
 
 #define DEFAULT_PORT 10000
-#define DEFAULT_CERT_FILE_PATH "rootca.crt"
+#define DEFAULT_CERT_FILE_PATH "my.crt"
 #define DEFAULT_KEY_FILE_PATH  "my.key"
 
 class SSL_Server {

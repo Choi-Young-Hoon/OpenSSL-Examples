@@ -34,9 +34,6 @@ void SSL_Server::Initialize() {
 
 
 void SSL_Server::Finalize() {
-	EVP_cleanup();
-	ERR_free_strings();
-
 #ifdef _WIN32
 	WSACleanup();
 #endif
@@ -75,7 +72,7 @@ void SSL_Server::ServerStart() {
 
 void SSL_Server::ClientEcho() {
 	struct sockaddr_in clientAddr;
-	int clientAddrSize = sizeof(clientAddr);
+	socklen_t clientAddrSize = sizeof(clientAddr);
 
 	char szEchoMessage[] = "Hello";
 
@@ -86,7 +83,7 @@ void SSL_Server::ClientEcho() {
 			clientSock = accept(m_ServerSocket, (struct sockaddr*)&clientAddr, &clientAddrSize);
 			if (clientSock == -1) {
 				std::cout << __FUNCTION__ << " - Client accept() failed" << std::endl;
-				return;
+				continue;
 			}
 
 			std::cout << __FUNCTION__ << " - Client Accept: " << inet_ntoa(clientAddr.sin_addr) << std::endl;
@@ -103,7 +100,11 @@ void SSL_Server::ClientEcho() {
 
 				// Close
 				SSL_free(pClientSslCtx);
+#ifdef _WIN32
 				closesocket(clientSock);
+#elif __linux__
+				close(clientSock);
+#endif
 				continue;
 			}
 
@@ -112,19 +113,23 @@ void SSL_Server::ClientEcho() {
 		
 		char recvBuf[1025] = { 0, };
 		if (SSL_read(pClientSslCtx, recvBuf, 1024) <= 0) {
-			ERR_print_errors_fp(stderr);
+			//ERR_print_errors_fp(stderr);
 			std::cout << __FUNCTION__ << " - SSL_write() failed" << std::endl;
 		}
 		std::cout << recvBuf << std::endl;
 
 		if (SSL_write(pClientSslCtx, szEchoMessage, strlen(szEchoMessage)) <= 0) {
-			ERR_print_errors_fp(stderr);
+			//ERR_print_errors_fp(stderr);
 			std::cout << __FUNCTION__ << " - SSL_write() failed" << std::endl;			
 		}
 
 		// Close
 		SSL_free(pClientSslCtx);
+#ifdef _WIN32
 		closesocket(clientSock);
+#elif __linux__
+		close(clientSock);
+#endif
 	}
 }
 
@@ -176,7 +181,7 @@ SOCKET SSL_Server::CreateTcpSocket(int nPort) {
 SSL_CTX* SSL_Server::CreateSslCtx() {
 	SSL_CTX* pSslCtx = NULL;
 
-	pSslCtx = SSL_CTX_new(SSLv3_server_method());
+	pSslCtx = SSL_CTX_new(TLSv1_2_server_method());
 	if (pSslCtx == NULL) {
 		return NULL;
 	}

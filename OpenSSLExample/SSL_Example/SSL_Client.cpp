@@ -73,7 +73,7 @@ SOCKET SSL_Client::CreateTcpSocket(int nPort) {
 SSL_CTX* SSL_Client::CreateSslCtx() {
 	m_pSSLCtx = SSL_CTX_new(TLSv1_2_client_method());
 	if (m_pSSLCtx == NULL) {
-		ERR_print_errors_fp(stderr);
+		// ERR_print_errors_fp(stderr);
 		std::cout << __FUNCTION__ << " - SSL_CTX_new() failed" << std::endl;
 		return NULL;
 	}
