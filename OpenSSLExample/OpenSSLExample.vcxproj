@@ -79,13 +79,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Base64.cpp" />
+    <ClCompile Include="CRYPTO_Example\Base64\Base64.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SSL_Example\SSL_Client.cpp" />
     <ClCompile Include="SSL_Example\SSL_Server.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Base64.h" />
+    <ClInclude Include="CRYPTO_Example\Base64\Base64.h" />
     <ClInclude Include="SSL_Example\SSL_Client.h" />
     <ClInclude Include="SSL_Example\SSL_Server.h" />
   </ItemGroup>
