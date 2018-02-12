@@ -52,13 +52,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\openssl-1.0.2n\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\openssl-1.1.0g_build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\openssl-1.0.2n\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>ssleay32.lib;libeay32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\openssl-1.1.0g_build\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,12 +79,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\openssl-1.0.2n\include\openssl\applink.c" />
+    <ClCompile Include="Base64.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SSL_Example\SSL_Client.cpp" />
     <ClCompile Include="SSL_Example\SSL_Server.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Base64.h" />
     <ClInclude Include="SSL_Example\SSL_Client.h" />
     <ClInclude Include="SSL_Example\SSL_Server.h" />
   </ItemGroup>

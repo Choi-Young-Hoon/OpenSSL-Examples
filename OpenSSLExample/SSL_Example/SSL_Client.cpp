@@ -6,11 +6,11 @@ SSL_Client::SSL_Client()
 {}
 
 SSL_Client::~SSL_Client() {
-	if (m_pSSL == NULL) {
+	if (m_pSSL != NULL) {
 		SSL_free(m_pSSL);
 	}
 
-	if (m_pSSLCtx == NULL) {
+	if (m_pSSLCtx != NULL) {
 		SSL_CTX_free(m_pSSLCtx);
 	}
 }
@@ -73,7 +73,6 @@ SOCKET SSL_Client::CreateTcpSocket(int nPort) {
 SSL_CTX* SSL_Client::CreateSslCtx() {
 	m_pSSLCtx = SSL_CTX_new(TLSv1_2_client_method());
 	if (m_pSSLCtx == NULL) {
-		// ERR_print_errors_fp(stderr);
 		std::cout << __FUNCTION__ << " - SSL_CTX_new() failed" << std::endl;
 		return NULL;
 	}

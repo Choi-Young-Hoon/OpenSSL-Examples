@@ -36,8 +36,8 @@
     <ClCompile Include="SSL_Example\SSL_Client.cpp">
       <Filter>소스 파일\SSL_Example</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\openssl-1.0.2n\include\openssl\applink.c">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Base64.cpp">
+      <Filter>소스 파일\Crypto_Example</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="SSL_Example\SSL_Server.h">
       <Filter>헤더 파일\SSL_Example</Filter>
+    </ClInclude>
+    <ClInclude Include="Base64.h">
+      <Filter>헤더 파일\Crypto_Example</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

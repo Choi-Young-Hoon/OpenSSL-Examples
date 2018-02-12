@@ -1,6 +1,5 @@
 #include "SSL_Server.h"
 
-
 SSL_Server::SSL_Server()
 : m_pServerSslCtx(NULL)
 , m_ServerSocket(0)
@@ -72,7 +71,12 @@ void SSL_Server::ServerStart() {
 
 void SSL_Server::ClientEcho() {
 	struct sockaddr_in clientAddr;
-	socklen_t clientAddrSize = sizeof(clientAddr);
+#ifdef _WIN32
+	int clientAddrSize; 
+#elif __linux__
+	socklen_t clientAddrSize;
+#endif
+	clientAddrSize = sizeof(clientAddr);
 
 	char szEchoMessage[] = "Hello";
 
