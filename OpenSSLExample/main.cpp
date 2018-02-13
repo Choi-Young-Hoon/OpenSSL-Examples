@@ -1,23 +1,20 @@
 #include <iostream>
 #include <string>
 
-#include "Base64.h"
+#include "CRYPTO_Example/Sha.h"
 
 int main(void) {
-	Base64 base64;
-	char szData[] = "Hello World";
-	char* szBase64Data = NULL;
+	SHA sha;
+	char data[] = "Hello World";
 
-	base64.Base64Encode((unsigned char*)szData, strlen(szData), &szBase64Data);
-	std::cout << "Plain Data: " << szData << std::endl;
-	std::cout << "Plain Data Length: " << strlen(szData) << std::endl;
-	std::cout << "Base64 Encode Data: " << szBase64Data << std::endl;
+	for (int i = 0; i < 3; i++) {
+		sha.SetData((unsigned char*)data, strlen(data));
+		sha.Sha256();
+		std::cout << "SHA256 :  " << sha.GetData() << std::endl;
 
-	char* pszDecodeData = NULL;
-	unsigned int nDecodeDataLength = 0;
-	base64.Base64Decode(szBase64Data, (unsigned char**)&pszDecodeData, &nDecodeDataLength);
-	std::cout << "Base64 Decode Data: " << pszDecodeData << std::endl;
-	std::cout << "Bsee64 Decode Data Length: " << nDecodeDataLength << std::endl;
-
+		sha.SetData((unsigned char*)data, strlen(data));
+		sha.Sha512();
+		std::cout << "SHA512 :  " << sha.GetData() << std::endl << std::endl << std::endl;
+	}
 	return 0;
 }
