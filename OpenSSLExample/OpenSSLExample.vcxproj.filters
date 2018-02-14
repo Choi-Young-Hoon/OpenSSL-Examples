@@ -63,4 +63,7 @@
       <Filter>헤더 파일\Crypto_Example</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" />
+  </ItemGroup>
 </Project>
