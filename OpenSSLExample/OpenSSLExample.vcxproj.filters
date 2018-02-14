@@ -42,6 +42,9 @@
     <ClCompile Include="CRYPTO_Example\Sha.cpp">
       <Filter>소스 파일\Crypto_Example</Filter>
     </ClCompile>
+    <ClCompile Include="CRYPTO_Example\AES.cpp">
+      <Filter>소스 파일\Crypto_Example</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SSL_Example\SSL_Client.h">
@@ -54,6 +57,9 @@
       <Filter>헤더 파일\Crypto_Example</Filter>
     </ClInclude>
     <ClInclude Include="CRYPTO_Example\Sha.h">
+      <Filter>헤더 파일\Crypto_Example</Filter>
+    </ClInclude>
+    <ClInclude Include="CRYPTO_Example\AES.h">
       <Filter>헤더 파일\Crypto_Example</Filter>
     </ClInclude>
   </ItemGroup>
